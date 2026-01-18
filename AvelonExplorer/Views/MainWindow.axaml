@@ -1,0 +1,100 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvelonExplorer.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvelonExplorer.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AvelonExplorer">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <DockPanel>
+        <!-- Menu Bar -->
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Exit"/>
+            </MenuItem>
+            <MenuItem Header="Edit"/>
+            <MenuItem Header="View"/>
+            <MenuItem Header="Help"/>
+        </Menu>
+
+        <!-- Toolbar -->
+        <Grid DockPanel.Dock="Top" ColumnDefinitions="Auto,*,Auto">
+            <!-- Left Section -->
+            <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="5">
+                <Button Content="Back"/>
+                <Button Content="Forward"/>
+                <Button Content="Up"/>
+            </StackPanel>
+
+            <!-- Middle Section -->
+            <TextBox Grid.Column="1" Margin="5,0" Watermark="Enter path here..."/>
+
+            <!-- Right Section -->
+            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="5">
+                <Button Content="Refresh"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Main Content Area -->
+        <Grid ColumnDefinitions="250,5,*">
+            <!-- Left Sidebar -->
+            <ScrollViewer Grid.Column="0">
+                <StackPanel>
+                    <ItemsControl ItemsSource="{Binding QuickAccessGroups}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,0,0,15">
+                                    <!-- Group Name -->
+                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="0,0,0,5"/>
+                                    <!-- Group Items -->
+                                    <ItemsControl ItemsSource="{Binding Items}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Button Content="{Binding Name}" Padding="5,3" Margin="0,2"/>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- Splitter -->
+            <GridSplitter Grid.Column="1" Width="5" Background="#CCCCCC"/>
+
+            <!-- Right File Explorer Pane - Tabbed -->
+            <TabControl Grid.Column="2" ItemsSource="{Binding FileSystemTabs}" SelectedItem="{Binding SelectedTab}">
+                <TabControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DisplayName}"/>
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
+                <TabControl.ContentTemplate>
+                    <DataTemplate DataType="vm:FileSystemTabViewModel">
+                        <ListBox ItemsSource="{Binding Items}" Margin="5">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
+            </TabControl>
+        </Grid>
+    </DockPanel>
+
+</Window>

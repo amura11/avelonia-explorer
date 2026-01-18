@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:AvelonExplorer.ViewModels"
+             x:Class="AvelonExplorer.Views.FileSystemGridView"
+             x:DataType="vm:FileSystemTabViewModel">
+    
+    <ItemsControl ItemsSource="{Binding Items}">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel HorizontalAlignment="Left"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <StackPanel Spacing="5" Width="120" Margin="10">
+                    <Border BorderBrush="#CCCCCC" BorderThickness="1" Padding="5" CornerRadius="4">
+                        <TextBlock Text="📁" FontSize="48" TextAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="{Binding Name}" TextWrapping="Wrap" FontSize="12" TextAlignment="Center"/>
+                </StackPanel>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+
+</UserControl>
