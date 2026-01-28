@@ -1,6 +1,5 @@
 ﻿using Avalonia;
 using System;
-using AvelonExplorer.Infrastructure;
 using Microsoft.Extensions.Hosting;
 
 namespace AvelonExplorer;

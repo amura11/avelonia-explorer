@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:c="using:AvelonExplorer.Controls"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:AvelonExplorer.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="450"
+             x:Class="AvelonExplorer.Controls.FileExplorerControl"
+             x:DataType="vm:MainWindowViewModel">
+
+    <TabControl ItemsSource="{Binding FileSystemTabs}" SelectedItem="{Binding SelectedTab}">
+        <TabControl.ItemTemplate>
+            <DataTemplate>
+                <TextBlock Text="{Binding Title}"/>
+            </DataTemplate>
+        </TabControl.ItemTemplate>
+        <TabControl.ContentTemplate>
+            <DataTemplate DataType="vm:FileSystemTabViewModel">
+                <c:FileExplorerDetailsViewControl />
+            </DataTemplate>
+        </TabControl.ContentTemplate>
+    </TabControl>
+
+</UserControl>

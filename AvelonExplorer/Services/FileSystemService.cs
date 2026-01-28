@@ -116,5 +116,40 @@ public class FileSystemService : IFileSystemService
             return "Unknown";
         }
     }
+
+    public string? GetParentDirectoryPath(string path)
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(path))
+            {
+                return null;
+            }
+
+            return Directory.GetParent(path)?.FullName;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    public bool IsRootDirectory(string path)
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(path))
+            {
+                return false;
+            }
+
+            var directoryInfo = new DirectoryInfo(path);
+            return directoryInfo.Parent == null;
+        }
+        catch
+        {
+            return false;
+        }
+    }
 }
 

@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:AvelonExplorer.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="40"
+             x:Class="AvelonExplorer.Controls.ToolbarControl"
+             x:DataType="vm:MainWindowViewModel">
+
+    <Grid ColumnDefinitions="Auto,*,Auto">
+        <!-- Left Section -->
+        <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="5">
+            <Button Content="Back" Command="{Binding NavigateBackCommand}"/>
+            <Button Content="Forward" Command="{Binding NavigateForwardCommand}"/>
+            <Button Content="Up" Command="{Binding NavigateUpCommand}"/>
+        </StackPanel>
+
+        <!-- Middle Section -->
+        <TextBox Grid.Column="1" Margin="5,0" Watermark="Enter path here..."/>
+
+        <!-- Right Section -->
+        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="5">
+            <Button Content="Refresh" Command="{Binding RefreshCommand}"/>
+        </StackPanel>
+    </Grid>
+
+</UserControl>

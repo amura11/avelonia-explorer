@@ -25,5 +25,33 @@
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.2" />
         <PackageReference Include="Semi.Avalonia" Version="11.3.7.2" />
+        <PackageReference Include="Semi.Avalonia.DataGrid" Version="11.3.7.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Controls\QuickAccessControl.axaml.cs">
+        <DependentUpon>QuickAccessControl.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Controls\FileExplorerControl.axaml.cs">
+        <DependentUpon>FileExplorerTabsControl.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Controls\FileExplorerDetailsViewControl.axaml.cs">
+        <DependentUpon>FileExplorerDetailsViewControl.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Controls\FileExplorerGridViewControl.axaml.cs">
+        <DependentUpon>FileExplorerGridViewControl.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Controls\ToolbarControl.axaml.cs">
+        <DependentUpon>ToolbarControl.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Infrastructure\" />
     </ItemGroup>
 </Project>

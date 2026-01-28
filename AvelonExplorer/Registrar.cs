@@ -1,9 +1,10 @@
 using AvelonExplorer.Services;
 using AvelonExplorer.ViewModels;
 using AvelonExplorer.Views;
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AvelonExplorer.Infrastructure;
+namespace AvelonExplorer;
 
 public static class Registrar
 {
@@ -22,6 +23,7 @@ public static class Registrar
     private static void RegisterDomainServices(IServiceCollection services)
     {
         services.AddTransient<IFileSystemService, FileSystemService>();
+        services.AddSingleton<IMessenger>(_ => WeakReferenceMessenger.Default);
     }
 
     private static void RegisterFactories(IServiceCollection services)
